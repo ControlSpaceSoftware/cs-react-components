@@ -1,19 +1,45 @@
 {
-  "name": "cs-react-components",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "classname": "^0.0.0",
-    "lodash": "^4.17.4",
-    "ov-object-path": "^1.2.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-scripts": "1.0.11"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+	"name": "cs-react-components",
+	"version": "0.1.0",
+	"private": true,
+	"main": "lib/components/index.js",
+	"dependencies": {
+		"classname": "^0.0.0",
+		"lodash": "^4.17.4",
+		"ov-object-path": "^1.2.0",
+		"react": "^15.6.1",
+		"react-dom": "^15.6.1",
+		"react-scripts": "1.0.11"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test --env=jsdom",
+		"eject": "react-scripts eject",
+		"help": "build-scripts help",
+		"scripts": "build-scripts scripts",
+		"resources": "build-scripts resources",
+		"com-build": "build-scripts com-build",
+		"com-test": "build-scripts com-test",
+		"test-watch": "build-scripts test-watch",
+		"commit": "build-scripts commit",
+		"patch": "build-scripts patch",
+		"push": "build-scripts push",
+		"patch-push": "build-scripts patch-push",
+		"clean": "build-scripts clean",
+		"zip": "build-scripts zip",
+		"build-lambda": "build-scripts build-lambda",
+		"upload-lambda": "build-scripts upload-lambda"
+	},
+	"devDependencies": {
+		"babel-preset-react": "^6.24.1",
+		"build-scripts": "github:ControlSpaceSoftware/build-scripts",
+		"jsdom": "^11.2.0"
+	},
+	"babel": {
+		"presets": [
+			"env",
+			"react"
+		]
+	}
 }

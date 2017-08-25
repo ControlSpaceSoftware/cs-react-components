@@ -32,7 +32,7 @@ class WaitingIndicator extends Component {
 
 	render() {
 		return (
-			<span className="Waiting"><span className="Waiting-prefix">{this.props.prefix}</span><small className="Waiting-indicator">{WaitingIndicator.indicator[this.state.index]}</small></span>
+			<span className="WaitingIndicator"><span className="WaitingIndicator-prefix">{this.props.prefix}</span><small className="WaitingIndicator-indicator">{WaitingIndicator.indicator[this.state.index]}</small></span>
 		);
 	};
 

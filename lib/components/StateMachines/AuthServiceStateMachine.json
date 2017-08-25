@@ -1,0 +1,255 @@
+{
+	"SignIn": {
+		"label": "Sign In",
+		"description": "Enter your email address and password.",
+		"startState": true,
+		"fields": [
+			{
+				"name": "email",
+				"label": "Email Address"
+			},
+			{
+				"name": "password",
+				"label": "Password",
+				"type": "password"
+			}
+		],
+		"actions": [
+			{
+				"name": "forgotPassword",
+				"label": "Forgot Password",
+				"style": "secondary",
+				"nextState": {
+					"onSuccess": "ForgotPasswordConfirm",
+					"onFailure": "ForgotPassword"
+				}
+			},
+			{
+				"name": "signIn",
+				"label": "Sign In",
+				"style": "primary",
+				"nextState": {
+					"onSuccess": "Authenticated",
+					"onFailure": "SignIn",
+					"onErrorCode": {
+						"UserNotConfirmedException": "SignUpConfirm",
+						"PasswordResetRequiredException": "ForgotPassword"
+					}
+				}
+			}
+		]
+	},
+	"SignOut": {
+		"label": "Sign Out?",
+		"description": "Are you sure you want to sign out?",
+		"fields": [
+			{
+				"name": "email",
+				"label": "Email Address",
+				"type": "hidden"
+			}
+		],
+		"doAction": "signOut",
+		"actions": [
+			{
+				"name": "signOut",
+				"label": "Yes, Sign Out",
+				"style": "primary",
+				"nextState": {
+					"onSuccess": "SignIn",
+					"onFailure": "SignIn"
+				}
+			}
+		]
+	},
+	"Authenticated": {
+		"label": "Authenticated",
+		"fields": [
+			{
+				"name": "email",
+				"label": "Email Address",
+				"type": "hidden"
+			}
+		],
+		"actions": [
+			{
+				"name": "signOut",
+				"label": "Sign Out",
+				"style": "primary",
+				"nextState": {
+					"onSuccess": "SignIn",
+					"onFailure": "SignIn"
+				}
+			}
+		]
+	},
+	"ForgotPassword": {
+		"label": "Reset Password",
+		"description": "Enter your email address and click Request Password Change.",
+		"fields": [
+			{
+				"name": "email",
+				"label": "Email Address"
+			}
+		],
+		"actions": [
+			{
+				"name": "signIn",
+				"label": "Sign In",
+				"style": "secondary",
+				"nextState": {
+					"onSuccess": "SignIn"
+				}
+			},
+			{
+				"name": "forgotPassword",
+				"label": "Request Password Change...",
+				"style": "primary",
+				"nextState": {
+					"onSuccess": "ForgotPasswordConfirm",
+					"onFailure": "ForgotPassword"
+				}
+			}
+		]
+	},
+	"ForgotPasswordConfirm": {
+		"label": "New Password",
+		"description": "Enter the Confirmation Code we sent you and a new password.",
+		"fields": [
+			{
+				"name": "email",
+				"label": "Email Address"
+			},
+			{
+				"name": "code",
+				"label": "Confirmation Code"
+			},
+			{
+				"name": "newPassword",
+				"label": "New Password",
+				"type": "password"
+			}
+		],
+		"actions": [
+			{
+				"name": "forgotPassword",
+				"label": "Request A New Confirmation Code",
+				"style": "secondary",
+				"nextState": {
+					"onSuccess": "ForgotPasswordConfirm",
+					"onFailure": "ForgotPasswordConfirm"
+				}
+			},
+			{
+				"name": "forgotPasswordConfirm",
+				"label": "Set New Password",
+				"style": "primary",
+				"nextState": {
+					"onSuccess": "SignIn",
+					"onFailure": "ForgotPasswordConfirm"
+				}
+			}
+		]
+	},
+	"SignUp": {
+		"label": "Sign Up",
+		"description": "Enter your name, email address and a new password for this account.",
+		"isStartState": true,
+		"fields": [
+			{
+				"name": "name",
+				"label": "Full Name"
+			},
+			{
+				"name": "email",
+				"label": "Email Address"
+			},
+			{
+				"name": "password",
+				"label": "New Password",
+				"type": "password"
+			}
+		],
+		"actions": [
+			{
+				"name": "signUp",
+				"label": "Sign Up",
+				"style": "primary",
+				"nextState": {
+					"onSuccess": "SignUpConfirm",
+					"onFailure": "SignUp"
+				}
+			}
+		]
+	},
+	"SignUpConfirm": {
+		"label": "Confirm New Account",
+		"description": "Enter the Confirmation Code we sent to you.",
+		"fields": [
+			{
+				"name": "email",
+				"label": "Email Address",
+				"style": "readOnly"
+			},
+			{
+				"name": "code",
+				"label": "Confirmation Code"
+			}
+		],
+		"actions": [
+			{
+				"name": "resendConfirmationCode",
+				"label": "Request A New Confirmation Code",
+				"style": "secondary",
+				"nextState": {
+					"onSuccess": "SignUpConfirm",
+					"onFailure": "SignUpConfirm"
+				}
+			},
+			{
+				"name": "signUpConfirm",
+				"label": "Confirm Account",
+				"style": "primary",
+				"nextState": {
+					"onSuccess": "SignUpConfirmSuccess",
+					"onFailure": "SignUpConfirm"
+				}
+			}
+		]
+	},
+	"SignUpConfirmSuccess": {
+		"label": "Sign Up Complete",
+		"description": "Your account is ready. Sign in to get going.",
+		"fields": [
+			{
+				"name": "email",
+				"label": "Email Address",
+				"style": "hidden"
+			},
+			{
+				"name": "password",
+				"label": "Password",
+				"type": "password"
+			}
+		],
+		"actions": [
+			{
+				"name": "forgotPassword",
+				"label": "Forgot Password",
+				"style": "secondary",
+				"nextState": {
+					"onSuccess": "ForgotPassword"
+				}
+			},
+			{
+				"name": "signIn",
+				"label": "Sign In",
+				"style": "primary",
+				"nextState": {
+					"onSuccess": "Authenticated",
+					"onFailure": "SignIn"
+				}
+			}
+		]
+	}
+}

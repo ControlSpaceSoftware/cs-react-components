@@ -73,8 +73,7 @@ export default class StateMachine extends Component {
 		// 1. make sure actionName is a valid action for the current state
 		// 2. make sure service supports the action
 		// 3. execute service action
-		// 4. notify consumer after action to clean data and messages
-		// 5. call success or failure handler to update the state
+		// 4. notify consumer of state change
 
 		const stateMachine = this.props.stateMachine;
 		const stateName = this.state.stateName;
