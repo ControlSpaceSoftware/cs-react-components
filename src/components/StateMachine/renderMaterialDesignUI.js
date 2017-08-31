@@ -26,7 +26,7 @@ function render(stateMachine, stateName) {
 	};
 
 	const paperStyle = {
-		minHeight: 400,
+		minHeight: 100,
 		width: 500,
 		margin: 20,
 		padding: 0,
