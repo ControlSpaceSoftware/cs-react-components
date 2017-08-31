@@ -127,7 +127,6 @@ SignUpSignInSignOut.propTypes = {
 SignUpSignInSignOut.defaultProps = {
 	stateName: 'SignIn',
 	userInfo: {},
-	onClose: false,
 	onStateChange: (stateName, userInfo) => console.log('onStateChange', stateName, userInfo)
 };
 
