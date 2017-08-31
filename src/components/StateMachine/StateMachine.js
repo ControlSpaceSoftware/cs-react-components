@@ -66,7 +66,7 @@ export default class StateMachine extends Component {
 	}
 
 	onStateChange() {
-		this.props.onStateChange(this.state.stateName, this.state.serviceData);
+		this.props.onStateChange(this.state.stateName, this.state.serviceData, this.state.messages);
 	}
 
 	doAction(actionName) {
