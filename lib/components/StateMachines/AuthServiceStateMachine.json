@@ -85,7 +85,7 @@
 	},
 	"ForgotPassword": {
 		"label": "Reset Password",
-		"description": "Enter your email address and click Request Password Change.",
+		"description": "Enter your email address.",
 		"fields": [
 			{
 				"name": "email",
@@ -153,7 +153,7 @@
 	},
 	"SignUp": {
 		"label": "Sign Up",
-		"description": "Enter your name, email address and a new password for this account.",
+		"description": "Enter your name, email address and a password.",
 		"isStartState": true,
 		"fields": [
 			{
@@ -219,7 +219,7 @@
 	},
 	"SignUpConfirmSuccess": {
 		"label": "Sign Up Complete",
-		"description": "Your account is ready. Sign in to get going.",
+		"description": "Your account is confirmed. Sign in to get started.",
 		"fields": [
 			{
 				"name": "email",

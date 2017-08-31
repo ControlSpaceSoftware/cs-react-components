@@ -4,7 +4,7 @@
 
 import omit from 'lodash/omit'
 import React, {Component, PropTypes} from 'react'
-import {StateMachine} from './StateMachine'
+import {StateMachine, renderMaterialDesignUI} from './StateMachine'
 import authServiceStateMachine from './StateMachines/AuthServiceStateMachine.json'
 
 /**
@@ -71,6 +71,7 @@ class SignUpSignInSignOut extends Component {
 					startState={this.props.stateName}
 					stateMachine={authServiceStateMachine}
 					onStateChange={this.onStateChange}
+					renderer={renderMaterialDesignUI}
 				/>
 			</div>
 		);

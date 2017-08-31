@@ -2,7 +2,7 @@
  * Created by onvelocity on 8/15/17.
  */
 
-import React, { Component, PropTypes } from 'react'
+import React, {Component, PropTypes} from 'react'
 import renderStateMachine from './renderStateMachine'
 import property from 'ov-object-path'
 import _ from 'lodash'
@@ -22,7 +22,7 @@ export default class StateMachine extends Component {
 		this.doAction = this.doAction.bind(this);
 		this.handleActionFailure = this.handleActionFailure.bind(this);
 		this.handleActionSuccess = this.handleActionSuccess.bind(this);
-		this.renderStateMachine = renderStateMachine(this, this.props.stateMachine);
+		this.renderStateMachine = this.props.renderer(this, this.props.stateMachine);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -165,6 +165,7 @@ StateMachine.propTypes = {
 	serviceData: PropTypes.object,
 	stateMachine: PropTypes.object.isRequired,
 	startState: PropTypes.string,
+	renderer: PropTypes.func,
 	onStateChange: PropTypes.func.isRequired
 };
 
@@ -173,5 +174,7 @@ StateMachine.defaultProps = {
 	serviceData: {},
 	stateMachine: {},
 	startState: '',
-	onStateChange: (actionName, serviceData, nextState) => {}
+	renderer: renderStateMachine,
+	onStateChange: (actionName, serviceData, nextState) => {
+	}
 };

@@ -6,6 +6,7 @@
 	"dependencies": {
 		"classname": "^0.0.0",
 		"lodash": "^4.17.4",
+		"material-ui": "^0.19.0",
 		"ov-object-path": "^1.2.0",
 		"react": "^15.6.1",
 		"react-dom": "^15.6.1",
@@ -14,21 +15,19 @@
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
-		"test": "react-scripts test --env=jsdom",
 		"eject": "react-scripts eject",
 		"help": "build-scripts help",
 		"scripts": "build-scripts scripts",
 		"resources": "build-scripts resources",
-		"com-build": "build-scripts com-build",
-		"com-test": "build-scripts com-test",
-		"test-watch": "build-scripts test-watch",
+		"compile": "build-scripts compile",
+		"test": "build-scripts test",
 		"commit": "build-scripts commit",
 		"patch": "build-scripts patch",
 		"push": "build-scripts push",
 		"patch-push": "build-scripts patch-push",
 		"clean": "build-scripts clean",
 		"zip": "build-scripts zip",
-		"build-lambda": "build-scripts build-lambda",
+		"package-lambda": "build-scripts package-lambda",
 		"upload-lambda": "build-scripts upload-lambda"
 	},
 	"devDependencies": {

@@ -23,7 +23,8 @@ function render(stateMachine, stateName) {
 		const type = field.type ? field.type : 'text';
 		// set focus on the first empty field
 		const focus = isFocusSet ? false : isFocusSet = !serviceData[field.name];
-		// note funky key is so the focus works between renders
+		// note input key is so the focus works between renders
+		// todo fix when an element is "reused" on render ReactJS does not call focus()
 		return (<input key={`${stateName}_${field.name}`} onChange={(event) => this.onInput(field.name, event.target.value)} type={type} readOnly={field.readOnly} defaultValue={serviceData[field.name]} autoFocus={focus} placeholder={field.label} />);
 	};
 
