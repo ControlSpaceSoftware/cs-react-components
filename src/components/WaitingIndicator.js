@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types'
 
 class WaitingIndicator extends Component {
 
@@ -32,7 +33,8 @@ class WaitingIndicator extends Component {
 
 	render() {
 		return (
-			<span className="WaitingIndicator"><span className="WaitingIndicator-prefix">{this.props.prefix}</span><small className="WaitingIndicator-indicator">{WaitingIndicator.indicator[this.state.index]}</small></span>
+			<span className="WaitingIndicator"><span className="WaitingIndicator-prefix">{this.props.prefix}</span><small
+				className="WaitingIndicator-indicator">{WaitingIndicator.indicator[this.state.index]}</small></span>
 		);
 	};
 

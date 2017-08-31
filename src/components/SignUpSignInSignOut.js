@@ -3,7 +3,8 @@
  */
 
 import omit from 'lodash/omit'
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import {StateMachine, renderMaterialDesignUI} from './StateMachine'
 import authServiceStateMachine from './StateMachines/AuthServiceStateMachine.json'
 
