@@ -89,10 +89,10 @@ class SignUpSignInSignOut extends Component {
 		this.onStateChange = this.onStateChange.bind(this);
 	}
 
-	onStateChange(stateName, serviceData) {
+	onStateChange(stateName, serviceData, actionResult, messages) {
 		// do not bubble password up
 		const userInfo = omit(serviceData, 'password', 'newPassword');
-		this.props.onStateChange(stateName, userInfo);
+		this.props.onStateChange(stateName, userInfo, actionResult, messages);
 	}
 
 	render() {
