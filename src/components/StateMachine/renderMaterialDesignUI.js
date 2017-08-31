@@ -7,9 +7,8 @@ import validateStateMachine from './validateStateMachine'
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
 import LinearProgress from 'material-ui/LinearProgress';
-import Paper from 'material-ui/Paper';
 
 function render(stateMachine, stateName) {
 
@@ -23,15 +22,6 @@ function render(stateMachine, stateName) {
 	};
 	const buttonLabelStyle = {
 		margin: 12
-	};
-
-	const paperStyle = {
-		minHeight: 100,
-		width: 500,
-		margin: 20,
-		padding: 0,
-		textAlign: 'center',
-		display: 'inline-block',
 	};
 
 	const descriptionStyle = {
@@ -110,16 +100,14 @@ function render(stateMachine, stateName) {
 
 	return (
 		<div className={className('StateMachine', {'action-running': this.state.isActionRunning})}>
-			<Paper style={paperStyle}>
-				{label}
-				{description}
-				<div className="StateMachine-fields">{fields.map(mapFields)}</div>
-				<div className="StateMachine-actions">
-					<Toolbar><ToolbarGroup lastChild={true}>{actions.map(mapActions)}</ToolbarGroup></Toolbar>
-				</div>
-				{this.state.isActionRunning ? <LinearProgress mode="indeterminate"/> : null}
-				<div style={messagesStyle} className="StateMachine-messages">{messages.map(mapMessages)}</div>
-			</Paper>
+			{label}
+			{description}
+			<div className="StateMachine-fields">{fields.map(mapFields)}</div>
+			<div className="StateMachine-actions">
+				<Toolbar><ToolbarGroup lastChild={true}>{actions.map(mapActions)}</ToolbarGroup></Toolbar>
+			</div>
+			{this.state.isActionRunning ? <LinearProgress mode="indeterminate"/> : null}
+			<div style={messagesStyle} className="StateMachine-messages">{messages.map(mapMessages)}</div>
 		</div>
 	);
 

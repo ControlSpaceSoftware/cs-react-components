@@ -88,7 +88,20 @@ class App extends Component {
 				<section>
 					<h1>SignUpSignInSignOut</h1>
 					<p>Authentication UI wrapper around StateMachine.</p>
-					<SignUpSignInSignOut authService={authService} authServiceStateMachine={authServiceStateMachine} onStateChange={this.onAuthStateChange} stateName={this.state.stateName} />
+					<SignUpSignInSignOut style={{display: this.state.hideSignUp ? 'none': 'inline-block'}}
+						authService={authService}
+						authServiceStateMachine={authServiceStateMachine}
+						onStateChange={this.onAuthStateChange}
+						stateName={this.state.stateName}
+						onClose={() => {
+							console.log('close sign up');
+							this.setState({hideSignUp: true});
+							setTimeout(() => {
+								console.log('open sign up');
+								this.setState({hideSignUp: false});
+							}, 3000);
+						}}
+					/>
 					<pre>{this.state.stateName}</pre>
 					<pre>{JSON.stringify(this.state.userInfo, null, 5)}</pre>
 				</section>
