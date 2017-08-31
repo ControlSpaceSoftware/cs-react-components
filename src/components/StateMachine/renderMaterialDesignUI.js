@@ -35,10 +35,15 @@ function render(stateMachine, stateName) {
 	};
 
 	const descriptionStyle = {
-		margin: 40
+		marginLeft: 40,
+		marginRight: 40
 	};
 
 	const textFieldStyle = {};
+
+	const messagesStyle = {
+		minHeight: 40
+	};
 
 	if (typeof state === 'undefined') {
 		const msg = `State ${stateName} does not exist in state machine.`;
@@ -90,10 +95,10 @@ function render(stateMachine, stateName) {
 
 	const mapMessages = (message, index) => {
 		if (typeof message === 'string') {
-			return <div className="StateMachine-message" key={index}>{message}</div>;
+			return <p className="StateMachine-message" key={index}>{message}</p>;
 		}
 		if (typeof message === 'object') {
-			return <div className="StateMachine-message" key={index}>{message.message}</div>;
+			return <p className="StateMachine-message" key={index}>{message.message}</p>;
 		}
 	};
 
@@ -113,7 +118,7 @@ function render(stateMachine, stateName) {
 					<Toolbar><ToolbarGroup lastChild={true}>{actions.map(mapActions)}</ToolbarGroup></Toolbar>
 				</div>
 				{this.state.isActionRunning ? <LinearProgress mode="indeterminate"/> : null}
-				<div className="StateMachine-messages">{messages.map(mapMessages)}</div>
+				<div style={messagesStyle} className="StateMachine-messages">{messages.map(mapMessages)}</div>
 			</Paper>
 		</div>
 	);
