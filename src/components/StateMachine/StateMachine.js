@@ -2,7 +2,8 @@
  * Created by onvelocity on 8/15/17.
  */
 
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import renderStateMachine from './renderStateMachine'
 import property from 'ov-object-path'
 import _ from 'lodash'
