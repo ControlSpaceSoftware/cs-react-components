@@ -66,7 +66,7 @@ export default class StateMachine extends Component {
 	}
 
 	onStateChange() {
-		this.props.onStateChange(this.state.stateName, this.state.serviceData, this.state.messages);
+		this.props.onStateChange(this.state.stateName, this.state.serviceData, this.state.actionResult, this.state.messages);
 	}
 
 	doAction(actionName) {
@@ -107,7 +107,7 @@ export default class StateMachine extends Component {
 		this.setState({isActionRunning: true, messages: []});
 
 		serviceAction(actionData).then((actionResult) => {
-			const update = {serviceData: actionData};
+			const update = {serviceData: actionData, actionResult};
 			this.setState(update, () => {
 				const messages = actionResult instanceof Array ? actionResult : [actionResult];
 				this.handleActionSuccess(nextState, messages);
