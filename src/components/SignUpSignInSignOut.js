@@ -127,7 +127,7 @@ SignUpSignInSignOut.propTypes = {
 SignUpSignInSignOut.defaultProps = {
 	stateName: 'SignIn',
 	userInfo: {},
-	onStateChange: (stateName, userInfo) => console.log('onStateChange', stateName, userInfo)
+	onStateChange: (stateName, serviceData, actionResult, messages) => console.log('onStateChange', stateName, serviceData, actionResult, messages)
 };
 
 export default SignUpSignInSignOut;
