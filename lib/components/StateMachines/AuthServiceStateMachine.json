@@ -172,6 +172,14 @@
 		],
 		"actions": [
 			{
+				"name": "signIn",
+				"label": "Sign In",
+				"style": "secondary",
+				"nextState": {
+					"onSuccess": "SignIn"
+				}
+			},
+			{
 				"name": "signUp",
 				"label": "Sign Up",
 				"style": "primary",
