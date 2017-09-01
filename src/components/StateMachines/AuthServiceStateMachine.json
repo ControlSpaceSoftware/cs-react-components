@@ -25,6 +25,15 @@
 				}
 			},
 			{
+				"name": "signUp",
+				"label": "Sign Up",
+				"style": "secondary",
+				"nextState": {
+					"onSuccess": "SignUpConfirm",
+					"onFailure": "SignUp"
+				}
+			},
+			{
 				"name": "signIn",
 				"label": "Sign In",
 				"style": "primary",
