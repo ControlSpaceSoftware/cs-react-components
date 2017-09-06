@@ -27,7 +27,6 @@ export default function validateStateMachine(states) {
 			});
 		}
 	});
-	console.log('action names', actionNames.sort());
 	return errors.filter((i) => i);
 }
 
