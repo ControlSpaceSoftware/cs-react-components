@@ -185,7 +185,7 @@
 				"label": "Sign In",
 				"style": "secondary",
 				"nextState": {
-					"onSuccess": "SignIn"
+					"onSuccess": "Authenticated"
 				}
 			},
 			{
