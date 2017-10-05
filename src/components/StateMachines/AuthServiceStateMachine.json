@@ -185,7 +185,12 @@
 				"label": "Sign In",
 				"style": "secondary",
 				"nextState": {
-					"onSuccess": "Authenticated"
+					"onSuccess": "Authenticated",
+					"onFailure": "SignIn",
+					"onErrorCode": {
+						"UserNotConfirmedException": "SignUpConfirm",
+						"PasswordResetRequiredException": "ForgotPassword"
+					}
 				}
 			},
 			{
