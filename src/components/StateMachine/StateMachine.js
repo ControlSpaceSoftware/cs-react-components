@@ -7,8 +7,9 @@ import PropTypes from 'prop-types'
 import renderStateMachine from './renderStateMachine'
 import property from 'ov-object-path'
 import _ from 'lodash'
+import muiThemeable from 'material-ui/styles/muiThemeable';
 
-export default class StateMachine extends Component {
+class StateMachine extends Component {
 
 	constructor(props) {
 		super(props);
@@ -179,3 +180,5 @@ StateMachine.defaultProps = {
 	onStateChange: (actionName, serviceData, nextState) => {
 	}
 };
+
+export default muiThemeable()(StateMachine);

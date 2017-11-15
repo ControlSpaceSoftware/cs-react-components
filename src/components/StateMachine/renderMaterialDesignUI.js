@@ -7,7 +7,6 @@ import validateStateMachine from './validateStateMachine'
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
-import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
 import LinearProgress from 'material-ui/LinearProgress';
 
 function render(stateMachine, stateName) {
@@ -18,7 +17,8 @@ function render(stateMachine, stateName) {
 	const serviceData = this.state.serviceData;
 
 	const buttonStyle = {
-		margin: 12
+		margin: 12,
+
 	};
 	const buttonLabelStyle = {
 		margin: 12
@@ -32,7 +32,7 @@ function render(stateMachine, stateName) {
 	const textFieldStyle = {};
 
 	const messagesStyle = {
-		minHeight: 40
+		minHeight: 20
 	};
 
 	if (typeof state === 'undefined') {
@@ -51,36 +51,65 @@ function render(stateMachine, stateName) {
 		if (type === 'hidden') {
 			textFieldStyle.display = 'none';
 		}
-		return (<TextField key={key} name={key}
-						   onChange={(event) => this.onInput(field.name, event.target.value)}
-						   type={type}
-						   readOnly={field.readOnly}
-						   defaultValue={serviceData[field.name]}
-						   autoFocus={focus}
-						   placeholder={field.label}
-						   style={textFieldStyle}/>);
+		return (
+			<TextField
+				key={key}
+				name={key}
+				onChange={(event) => this.onInput(field.name, event.target.value)}
+				type={type}
+				readOnly={field.readOnly}
+				defaultValue={serviceData[field.name]}
+				autoFocus={focus}
+				placeholder={field.label}
+				style={textFieldStyle}
+			/>
+		);
 	};
 
-	const mapActions = (action) => {
+	const mapAction = (action) => {
 		const className = action.style;
-		let primary, secondary;
+		let primary;
 		if (className === 'primary') {
 			primary = true;
-		} else if (className === 'secondary') {
-			secondary = true;
 		}
+		const muiStyles = {};
+		if (this.props.muiTheme && this.props.muiTheme.palette) {
+			const palette = this.props.muiTheme.palette;
+			muiStyles.backgroundColor = palette.accent2Color;
+			muiStyles.labelColor = palette.textColor;
+		}
+		console.log(muiStyles);
 		if (primary) {
-			return (<RaisedButton key={action.name} name={action.name} primary={primary} onClick={(event) => {
-				this.setFocusOn = null;
-				this.doAction(action.name);
-			}} className={className} style={buttonStyle} labelStyle={buttonLabelStyle}><span
-				style={buttonLabelStyle}>{action.label}</span></RaisedButton>);
+			return (
+				<RaisedButton
+					key={action.name}
+					name={action.name}
+					onClick={(event) => {
+						this.setFocusOn = null;
+						this.doAction(action.name);
+					}}
+					{...muiStyles}
+					className={className}
+					style={buttonStyle}
+					labelStyle={buttonLabelStyle}>
+					<span style={buttonLabelStyle}>{action.label}</span>
+				</RaisedButton>
+			);
 		}
-		return (<FlatButton key={action.name} name={action.name} secondary={secondary} onClick={(event) => {
-			this.setFocusOn = null;
-			this.doAction(action.name);
-		}} className={className} style={buttonStyle} labelStyle={buttonLabelStyle}><span
-			style={buttonLabelStyle}>{action.label}</span></FlatButton>);
+		return (
+			<FlatButton
+				key={action.name}
+				name={action.name}
+				onClick={(event) => {
+					this.setFocusOn = null;
+					this.doAction(action.name);
+				}}
+				className={className}
+				style={buttonStyle}
+				labelStyle={buttonLabelStyle}>
+				<span style={buttonLabelStyle}>{action.label}</span>
+			</FlatButton>
+		);
 	};
 
 	const mapMessages = (message, index) => {
@@ -92,11 +121,43 @@ function render(stateMachine, stateName) {
 		}
 	};
 
-	const fields = (state && state.fields) || [];
-	const actions = (state && state.actions) || [];
+	const fields = (state.fields) || [];
+	const actions = (state.actions) || [];
 	const messages = [].concat(this.state.messages, state.message).filter(i => i);
 	const label = state.label ? <h1>{state.label}</h1> : null;
 	const description = state.description ? <p style={descriptionStyle}>{state.description}</p> : null;
+
+	const alreadyHaveAccount = () => {
+		if (this.state.stateName !== 'SignIn') {
+			return (
+				<div className="StateMachine-alreadyHaveAccount">
+					<FlatButton style={{border: 0}} labelStyle={{textTransform: 'initial', padding: 8, fontWeight: 100}} label='Got an account?' onClick={() => this.setState({stateName: 'SignIn'})}/>
+				</div>
+
+			);
+		}
+	};
+	const createAccount = () => {
+		if (this.state.stateName !== 'SignUp') {
+			return (
+				<div className="StateMachine-createAccount">
+					<FlatButton labelStyle={{textTransform: 'initial', padding: 8, fontWeight: 100}} label='Need an account?' onClick={() => this.setState({stateName: 'SignUp'})}/>
+				</div>
+
+			);
+		}
+	};
+
+	const forgotPassword = () => {
+		if (this.state.stateName !== 'ForgotPassword') {
+			return (
+				<div className="StateMachine-forgotPassword">
+					<FlatButton labelStyle={{textTransform: 'initial', padding: 8, fontWeight: 100}} label="Forgot username or
+					password?" onClick={() => this.setState({stateName: 'ForgotPassword'})}/>
+				</div>
+			);
+		}
+	};
 
 	return (
 		<div className={className('StateMachine', {'action-running': this.state.isActionRunning})}>
@@ -104,10 +165,13 @@ function render(stateMachine, stateName) {
 			{description}
 			<div className="StateMachine-fields">{fields.map(mapFields)}</div>
 			<div className="StateMachine-actions">
-				<Toolbar><ToolbarGroup lastChild={true}>{actions.map(mapActions)}</ToolbarGroup></Toolbar>
+				{actions.map(mapAction)}
 			</div>
 			{this.state.isActionRunning ? <LinearProgress mode="indeterminate"/> : null}
 			<div style={messagesStyle} className="StateMachine-messages">{messages.map(mapMessages)}</div>
+			{alreadyHaveAccount()}
+			{createAccount()}
+			{forgotPassword()}
 		</div>
 	);
 
