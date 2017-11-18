@@ -11,7 +11,8 @@
 			{
 				"name": "password",
 				"label": "Password",
-				"type": "password"
+				"type": "password",
+				"onEnterKeyAction": "signIn"
 			}
 		],
 		"actions": [
@@ -129,7 +130,8 @@
 			{
 				"name": "password",
 				"label": "New Password",
-				"type": "password"
+				"type": "password",
+				"onEnterKeyAction": "signUp"
 			}
 		],
 		"actions": [
@@ -155,7 +157,8 @@
 			},
 			{
 				"name": "code",
-				"label": "Confirmation Code"
+				"label": "Confirmation Code",
+				"onEnterKeyAction": "signUpConfirm"
 			}
 		],
 		"actions": [
@@ -191,7 +194,8 @@
 			{
 				"name": "password",
 				"label": "Password",
-				"type": "password"
+				"type": "password",
+				"onEnterKeyAction": "signIn"
 			}
 		],
 		"actions": [

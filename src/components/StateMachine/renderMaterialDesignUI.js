@@ -51,11 +51,23 @@ function render(stateMachine, stateName) {
 		if (type === 'hidden') {
 			textFieldStyle.display = 'none';
 		}
+		let onKeyPress;
+		if (typeof field.onEnterKeyAction === 'string') {
+			onKeyPress = (event) => {
+				if (event.charCode === 13) {
+					this.doAction(field.onEnterKeyAction)
+				}
+			}
+		} else {
+			onKeyPress = (event) => {
+			};
+		}
 		return (
 			<TextField
 				key={key}
 				name={key}
-				onChange={(event) => this.onInput(field.name, event.target.value)}
+				onKeyPress={onKeyPress}
+				onChange={(event) => this.onInput(field, event.target.value)}
 				type={type}
 				readOnly={field.readOnly}
 				defaultValue={serviceData[field.name]}
@@ -78,7 +90,6 @@ function render(stateMachine, stateName) {
 			muiStyles.backgroundColor = palette.accent2Color;
 			muiStyles.labelColor = palette.textColor;
 		}
-		console.log(muiStyles);
 		if (primary) {
 			return (
 				<RaisedButton
@@ -131,7 +142,8 @@ function render(stateMachine, stateName) {
 		if (this.state.stateName !== 'SignIn') {
 			return (
 				<div className="StateMachine-alreadyHaveAccount">
-					<FlatButton style={{border: 0}} labelStyle={{textTransform: 'initial', padding: 8, fontWeight: 100}} label='Got an account?' onClick={() => this.setState({stateName: 'SignIn'})}/>
+					<FlatButton style={{border: 0}} labelStyle={{textTransform: 'initial', padding: 8, fontWeight: 100}}
+								label='Already have an account?' onClick={() => this.setState({stateName: 'SignIn'})}/>
 				</div>
 
 			);
@@ -141,7 +153,8 @@ function render(stateMachine, stateName) {
 		if (this.state.stateName !== 'SignUp') {
 			return (
 				<div className="StateMachine-createAccount">
-					<FlatButton labelStyle={{textTransform: 'initial', padding: 8, fontWeight: 100}} label='Need an account?' onClick={() => this.setState({stateName: 'SignUp'})}/>
+					<FlatButton labelStyle={{textTransform: 'initial', padding: 8, fontWeight: 100}}
+								label='Need an account?' onClick={() => this.setState({stateName: 'SignUp'})}/>
 				</div>
 
 			);

@@ -25,7 +25,18 @@ function render(stateMachine, stateName) {
 		const focus = isFocusSet ? false : isFocusSet = !serviceData[field.name];
 		// note input key is so the focus works between renders
 		// todo fix when an element is "reused" on render ReactJS does not call focus()
-		return (<input key={`${stateName}_${field.name}`} onChange={(event) => this.onInput(field.name, event.target.value)} type={type} readOnly={field.readOnly} defaultValue={serviceData[field.name]} autoFocus={focus} placeholder={field.label} />);
+		let onKeyPress;
+		if (typeof field.onEnterKeyAction === 'string') {
+			onKeyPress = (event) => {
+				if (event.charCode === 13) {
+					this.doAction(field.onEnterKeyAction)
+				}
+			}
+		} else {
+			onKeyPress = (event) => {
+			};
+		}
+		return (<input key={`${stateName}_${field.name}`} onKeyPress={onKeyPress} onChange={(event) => this.onInput(field, event.target.value)} type={type} readOnly={field.readOnly} defaultValue={serviceData[field.name]} autoFocus={focus} placeholder={field.label} />);
 	};
 
 	const mapActions = (action) => {

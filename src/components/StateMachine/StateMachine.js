@@ -38,7 +38,6 @@ class StateMachine extends Component {
 
 	componentDidUpdate() {
 		if (this.refs.setFocusOn) {
-			console.log('setting focus', this.refs.setFocusOn);
 			this.refs.setFocusOn.focus();
 		}
 	}
@@ -60,7 +59,8 @@ class StateMachine extends Component {
 		return startState[0] || stateNames[0];
 	}
 
-	onInput(name, value) {
+	onInput(field, value) {
+		const name = field.name;
 		const serviceData = Object.assign({}, this.state.serviceData);
 		serviceData[name] = value;
 		this.setState({serviceData});
