@@ -1,0 +1,18 @@
+.LoadingIndicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+}
+
+.LoadingIndicatorBar {
+    position: absolute;
+    top: 0;
+    width: auto;/* set by animation code */
+    height: 8px;
+    color: red;
+    border-radius: 4px;
+    transition: all 1.5s linear;
+    transform: translate3d(0, 0, 0) translateZ(0);
+}

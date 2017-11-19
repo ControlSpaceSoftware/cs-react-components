@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {WaitingIndicator, StateMachine, SignUpSignInSignOut } from './components'
+import {WaitingIndicator, StateMachine, SignUpSignInSignOut, LoadingIndicator} from './components'
 import authServiceStateMachine from './components/StateMachines/AuthServiceStateMachine.json'
 
 const authService = {
@@ -104,6 +104,13 @@ class App extends Component {
 					/>
 					<pre>{this.state.stateName}</pre>
 					<pre>{JSON.stringify(this.state.userInfo, null, 5)}</pre>
+				</section>
+				<section>
+					<h1>LoadingIndicator</h1>
+					<p>A linear loading indicator</p>
+					<div style={{position: 'absolute', left: 0, right: 0}}>
+						<LoadingIndicator show={true}/>
+					</div>
 				</section>
 			</div>
 		);
