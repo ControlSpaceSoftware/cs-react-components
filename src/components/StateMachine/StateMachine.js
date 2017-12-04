@@ -90,8 +90,8 @@ class StateMachine extends Component {
 		const serviceAction = this.props.service[actionName];
 
 		if (typeof serviceAction !== 'function') {
-			console.error(`Unknown action (${actionName} for given state machine:`, this.state.stateMachine);
-			throw new TypeError(`Unknown action (${actionName} for given state machine.`);
+			console.error(`Unknown action '${actionName}' for given state machine:`, this.state.stateMachine);
+			throw new TypeError(`Unknown action '${actionName}' for given state machine.`);
 		}
 
 		const fields = state.fields;
@@ -102,7 +102,7 @@ class StateMachine extends Component {
 		const nextState = action.nextState;
 
 		if (!(nextState && typeof nextState === 'object')) {
-			throw new TypeError(`Missing nextState for action ${actionName}.`);
+			throw new TypeError(`Missing nextState for action '${actionName}'.`);
 		}
 
 		this.setState({isActionRunning: true, messages: []});
